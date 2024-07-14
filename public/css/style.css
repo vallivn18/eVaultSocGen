@@ -1,0 +1,189 @@
+body{
+    font-family: 'SourceSansPro',Arial,sans-serif;
+    text-align: center;
+    background-color: white;
+    /*background-image: linear-gradient(white, yellow);*/
+}
+.wad{
+    height: 100%;
+    width: 100%;
+}
+.navigation{
+    margin:-8px;
+    position: fixed;
+    padding: 5px;
+    width: 100%;
+    height: 60px;
+    font-weight: bold;
+    background-color: white;                              
+    z-index: 100;
+}
+.ani img {
+    width: 500px; 
+    height: 350px; 
+    border: ridge;
+}
+
+.account {
+    position: relative;
+    background-color: white;
+    border: none;
+    color: black;
+    font-size: 30px;
+    margin-left: 20px;
+    float: left;
+    font-family: 'SourceSansPro',Arial,sans-serif;
+  }
+.account:hover { 
+    background-color: red; 
+}
+.btnSignin { 
+    position: relative; 
+    float: right; 
+    background-color: white; 
+    border: none; 
+    color: black; 
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 25px; 
+    margin: 10px; 
+    font-family: 'SourceSansPro',Arial,sans-serif;
+}
+.btnSignin:hover { 
+    background-color: red; 
+    color: white;
+}
+.btnSignup { 
+    position: relative; 
+    float: right; 
+    background-color: white; 
+    border: none; 
+    color: black;  
+    font-size: 25px; 
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+    font-family: 'SourceSansPro',Arial,sans-serif;
+}
+.btnSignup:hover { 
+    background-color: red;
+    color: white;
+}
+.opt {
+    width: 500px;
+    height: 325px;
+    border: groove;
+    border-radius: 15px;
+    margin: 20px;  
+}
+.abt {
+    float:left;
+    width: 90%;
+    height: 100px;
+    border: groove;
+    border-radius: 15px;
+    font-size: 50px;
+    font-weight: bold;
+    background-image: linear-gradient(gray ,white);
+    margin-top: 30px;
+}
+div.image img{
+    max-width: 100%;
+}
+.opt:hover{
+    box-shadow: 2px 5px 5px 2px white;
+    background-color: white;
+}  
+.content{
+    width: 100%;
+    position: absolute;
+    margin-top: 70px;
+}
+.head{
+    position: relative;
+    font-size:30px;
+}
+.para{
+    color: black;
+    font-size:40px;
+}
+h5{
+    margin:5px;
+}
+.button{
+    position: relative;  
+    background-color: white; 
+    border: none; 
+    color: black; 
+    padding: 12px 16px; 
+    font-size: 30px; 
+    margin-left: 1200px; 
+    margin-right: 20px;    
+    font-family: 'SourceSansPro',Arial,sans-serif;
+}
+.button:hover { 
+    background-color: red; 
+}
+.smallogo{
+    width: 50px;
+    padding: 10px;
+    float: left;
+}
+ul, li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.smallogo img {
+    width: 100px; 
+    height: auto;
+    cursor: pointer;
+}
+.dropdown-content {
+    margin: 50px;
+    display: none;
+    position: absolute;
+    background-color: black;
+    min-width: 160px;
+    z-index: 1;
+}
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {
+    background-color: red;
+}
+.logo:hover .dropdown-content {
+    display: block;
+}
+
+#session {
+    display: flex;
+    align-items: center; 
+}
+
+#session a {
+    margin-left: 10px;
+}
+.options{
+    margin:5px;
+}
+#session h2 {
+    margin-left: 75%; 
+}
+
+#session a,
+#session h2 {
+    display: inline;
+}
+
+#session{
+    margin:20px
+}
+#register{
+    margin:20px
+}

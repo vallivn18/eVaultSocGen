@@ -1,0 +1,140 @@
+<!-- bookingHistory.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>eVault - Upload History</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/login-style.css">
+    <link rel="icon" href="/img/socgen.jpg">
+    <style>
+        body{
+          color:black;
+        }
+        table {
+            margin: 30px;
+            border-collapse: collapse;
+            background-color: black;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            position: absolute;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            background-color: #fffdfd;
+            color: black;
+        }
+
+        th {
+            background-color: black;
+            color: white;
+            font-weight: bold;
+        }
+        #session h2{          
+          float:left;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .biglogo{
+            margin-top: 80px;
+        }
+        h1{
+          display: inline;
+          margin: 0;
+          float: left;          
+        }
+    </style>
+    </style>
+</head>
+<body>
+    <div class="wad">
+        <div class="navigation">
+          <div class="header">
+            <div class="logo">
+              <img id="options" class="smallogo" src="/img/socgen.jpg" alt="eVault" width="50px">
+                <div class="dropdown-content">
+                    <a href="/socgen/evault">Home</a>
+                    <a href="/socgen/evault/about">About Us</a>
+                    <a href="/socgen/evault/upload-history" id="downloadButton">Download Docs</a>
+                </div>
+            </div>
+          </div>    
+            <div class="options">
+              
+              <h1>Download Docs</h1>
+                <div id="session">
+                    <% if (user && user.cname) { %>
+                        <script>var signedIn = true;</script>
+                        <h2>Welcome <%= user.cname %></h2>
+                        <a href="/socgen/evault/logout" method="post">Logout</a>
+                    <% } else { %>
+                        <script>var signedIn = false;</script>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        <img class="biglogo" src="/img/logo.png" alt="eVault" width="30%">
+        <div class="container">
+            <% if (uploads && uploads.length > 0) { %>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Date & Time</th>
+                    <th>Mobile Number</th>
+                    <th>Email</th>
+                    <th>Download</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% uploads.forEach(upload => { %>
+                    <tr>
+                      <td><%= upload.uploadedAt %></td>
+                      <td><%= upload.mob %></td>
+                      <td><%= upload.email %></td>
+                      <td>
+                            <a href="/uploads/<%= upload.file_name %>" target="_blank"><%= upload.file_name %></a>
+                      </td>
+                      <td><%= upload.comments %></td>
+                    </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+            <% } else { %>
+              <p>No uploads found.</p>
+            <% } %>
+          </div>
+    </div>
+
+    <script>
+        fetch('/uploads/upload-history')
+          .then(response => response.json())
+          .then(data => {
+            const tableBody = document.getElementById('bookingHistoryTable').getElementsByTagName('tbody')[0];
+    
+            data.forEach(upload => {
+              const row = tableBody.insertRow(-1);
+    
+              // Populate table cells based on your upload model
+              const cell1 = row.insertCell(0);
+              cell1.innerHTML = upload._id;
+    
+              const cell2 = row.insertCell(1);
+              cell2.innerHTML = upload.gname;
+    
+              // Add more cells as needed
+            });
+          })
+          .catch(error => {
+            console.error('Error fetching upload history:', error);
+          });
+      </script>
+
+</body>
+</html>

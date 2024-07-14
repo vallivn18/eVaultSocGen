@@ -1,0 +1,11 @@
+const express = require('express');
+const router = express.Router();
+const control = require('../controllers/pagesController');
+router.post('/evault/register', control.signup);
+router.post('/evault/login', control.signin);
+router.get('/evault/about', control.about);
+router.get('/evault', control.evault);
+router.post('/evault/submit-upload', control.upload.single('attachments'),control.uploadDoc);
+router.get('/evault/logout', control.logout);
+router.get('/evault/upload-history', control.uploadHistoryRoute);
+module.exports = router;

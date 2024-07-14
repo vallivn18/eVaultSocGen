@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
+  <title>eVault</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/login-style.css">
+  <link rel="icon" href="/img/socgen.jpg">
+  <style>
+    
+body {
+    font-family: 'SourceSansPro',Arial,sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(rgb(0, 0, 0), white);
+  }
+  
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+  }
+  
+  #about p {
+    color: black;
+    text-align: justify;
+  }
+  
+  #social-links {
+    margin-top: 1rem;
+  }
+  
+  #social-links a {
+    margin-right: 1rem;
+    color: red;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  #social-links a:hover{
+    color:black;
+  }
+  .content{
+    color: black;
+    width: 80%;
+    margin: 0;
+  }
+  #about{
+    margin-left: 200px;
+    margin-top: 70px;
+  }
+.logo{
+  margin:8px;
+}
+.content h1{
+  margin:30px
+}
+  </style>
+</head>
+<body>
+  <div class="wad">
+    <div class="navigation">
+      <div class="header">
+        <div class="logo">
+          <img class="smallogo" src="/img/socgen.jpg" alt="eVault" width="50px">
+            <div class="dropdown-content">
+                <a href="/socgen/evault">Home</a>
+                <a href="/socgen/evault/about">About Us</a>
+                <a href="/socgen/evault/upload-history">Download Docs</a>
+            </div>
+        </div>
+      </div>   
+      <div class="options"> 
+        <button class="btnSignup" onclick="document.getElementById('signup').style.display='block';document.getElementById('signin').style.display='none'" style="width:auto;">Sign up</button>
+        <button class="btnSignin" onclick="document.getElementById('signin').style.display='block';document.getElementById('signup').style.display='none'" style="width:auto;">Sign in</button>
+        <div id="session" style="display: none;">
+          <% if (user && user.cname) { %>
+            <script>var signedIn = true;</script>
+            <h2>Welcome <%= user.cname %></h2>
+            <a href="/socgen/evault/logout" method="post">Logout</a>
+          <% } else { %>
+            <script>var signedIn = false;</script>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    <div class="content"> 
+      <h5>THE FUTURE IS YOU</h5>
+        <div id="about">
+            <div class="head">
+                <img class="biglogo" src="/img/logo.png" alt="eVault" width="50%">
+            </div>            
+            <div class="content">
+            <h1>Building together, with our clients, a better and sustainable future through responsible and innovative financial solutions.</h1>
+
+            <p>Societe Generale, one of Europe's leading financial services groups and a major player in the economy for over 160 years, supports <strong>25 million clients </strong>every day with more than&nbsp;<strong>126,000 staff </strong>in <strong>65 countries</strong>.</p>
+
+            <p>Our Group draws on our European roots to develop our business internationally. Our unique geographic positioning enables us to connect Europe and Africa with major global financial centres in Asia and the Americas.</p>
+
+            <p>The Group combines <strong>financial strength, proven expertise in innovation and a sustainable growth strategy </strong>with the objective of <strong>creating value for all our stakeholders</strong>. We seek to be a trusted partner in the projects of those building tomorrow's world today.</p>
+
+            <p>This commitment guides our mission: to protect and manage assets and savings, finance projects, protect clients in their both their day-to-day lives and in their professional activities, ensure secure transactions and offer the best technological solutions.</p><br>
+            <div id="social-links">
+              <a href="https://www.societegenerale.com/" target="_blank">Website</a>
+              <a href="https://www.instagram.com/societegenerale/" target="_blank">Instagram</a>
+              <a href="https://www.facebook.com/socgensolutions" target="_blank">Facebook</a>
+              <a href="https://www.youtube.com/c/societegenerale" target="_blank">YouTube</a>
+              <a href="https://www.linkedin.com/organization-guest/company/societe-generale" target="_blank">LinkedIn</a>
+            </div>
+            </div>
+          </div>
+    </div>
+</div>
+<!--sign-up starts-->
+<div id="signup" class="modal">
+  <span onclick="document.getElementById('signup').style.display='none'" class="close" title="Close Modal">&times;</span>
+  <form class="modal-content" onsubmit="return checkPassword()"  action="/socgen/evault/register" method="post">
+    <div class="container">
+      <h1>Sign Up</h1>
+      <p>Please fill in this form to create an account.</p>
+      <hr>
+      <label for="cname"><b>Name</b></label>
+      <input type="text" placeholder="Enter your Name" id="cname" name="cname" required>
+      <label for="contact"><b>Mobile Number</b></label>
+      <input type="mobile" placeholder="Enter your Contact Number" id="contact" name="contact" required>
+      <label for="email"><b>Email id</b></label>
+      <input type="text" placeholder="Enter your e-mail id" id="email" name="email" required><br>
+      <div id="passwordInput">
+        <label for="password"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" id="password" name="password" required>
+      </div>
+    <label for="confirm_password"><b>Confirm Password</b></label>
+    <input type="password" placeholder="Confirm Password" id="confirm_password" name="confirm_password" required>
+   <div id="passwordInfo"></div>
+    <div id="passwordStrength">
+        <span id="poor"></span>
+        <span id="weak"></span>
+        <span id="strong"></span>
+   </div>
+       
+      <div class="clearfix">
+        <button type="submit" class="signupbtn">Sign Up</button>
+        <button type="button" onclick="document.getElementById('signup').style.display='none'" class="cancelbtnHome">Cancel</button>
+        <button style="text-align: center;" onclick="document.getElementById('signin').style.display='block';document.getElementById('signup').style.display='none'" style="width:auto;">Already registered?</button>
+      </div>
+    </div>
+  </form>
+</div>
+<!--sign-up ends-->
+<!--sign-in starts-->
+<div id="signin" class="modal">
+  <form class="modal-content animate" action="/socgen/evault/login" method="post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('signin').style.display='none'" class="close" title="Close Modal">&times;</span>
+    </div>
+    <div class="container">
+      <h1>Sign In</h1>
+      <hr><br>
+      <label for="userid"><b>User ID</b></label>
+      <input type="text" placeholder="Enter registered mail id or mobile number" name="userid" required>
+      <label for="password"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+      <button type="submit">Login</button>
+    </div>
+    <button style="text-align: center;" onclick="document.getElementById('signup').style.display='block';document.getElementById('signin').style.display='none'" style="width:auto;">Not registered yet?</button>
+    <div class="container">
+      <button type="button" onclick="document.getElementById('signin').style.display='none'" class="cancelbtnHome">Cancel</button>
+    </div>
+  </form>
+</div>
+<script>
+  var modal = document.getElementById('signin');
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+<!--sign-in ends-->
+
+<script src="/js/script.js"></script>
+<script>
+  function updateElementVisibility() {
+  const sessionDiv = document.getElementById('session');
+  const btnSignup = document.querySelector('.btnSignup');
+  const btnSignin = document.querySelector('.btnSignin');
+  function isUserSignedIn() {
+  return signedIn;
+}
+  if (isUserSignedIn()) {
+    // User is signed in, display #session and hide sign-up/sign-in buttons
+    sessionDiv.style.display = 'block';
+    btnSignup.style.display = 'none';
+    btnSignin.style.display = 'none';
+  } else {
+    // User is not signed in, hide #session and display sign-up/sign-in buttons
+    sessionDiv.style.display = 'none';
+    btnSignup.style.display = 'block';
+    btnSignin.style.display = 'block';
+  }
+}
+
+
+
+// Call the function initially when the page loads
+window.onload = updateElementVisibility;
+
+</script>  
+  
+</body>
+</html>
